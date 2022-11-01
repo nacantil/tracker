@@ -1,0 +1,27 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/dev"
+  "src/main"
+  "src/test"]
+
+ :dependencies [[proto-repl "0.3.1"]
+                [cljsjs/react "17.0.2-0"]
+                [cljsjs/react-dom "17.0.2-0"]
+                [reagent "1.1.0"]
+                [cljs-ajax "0.7.4"]
+                [adzerk/env "0.4.0"]
+                [org.clojars.frozenlock/reagent-contextmenu "0.4.3"]
+                [org.clojars.frozenlock/reagent-modals "0.2.8"]]
+
+ :nrepl {:port 3333}
+
+ :builds
+ {:app                              ;; name of build
+  {:target :browser                 ;; target the browser
+   :output-dir "public/app/js"      ;; output js files here
+   :asset-path "/app/js"            ;; used to construct the URL
+   :modules {:main {:entries [tracker.app]}}
+   :devtools {:before-load tracker.app/stop
+              :after-load tracker.app/start
+              :http-root "public"
+              :http-port 8081}}}}
